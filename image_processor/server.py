@@ -1,4 +1,5 @@
 import asyncio
+from concurrent import futures
 
 import grpc
 
@@ -7,16 +8,15 @@ from controllers import ImageProcessorController
 from management import Commands
 from protos import images_pb2_grpc
 from utils import AMQPServer, log
+from interceptors import AuthInterceptor
 
 
 async def run_server():
-    server = grpc.aio.server()
+    server = grpc.aio.server(
+        interceptors=(AuthInterceptor(settings.SECRET_KEY),),
+    )
 
     amqp_client: AMQPServer = await AMQPServer().init()
-
-    asyncio.ensure_future(
-        amqp_client.event_consumer(amqp_client.async_wrapper(log.info))
-    )
 
     commands = Commands()
     commands.create_default_folders()
@@ -31,4 +31,7 @@ async def run_server():
     log.info(f"Microservice started on address: {address}")
 
     await server.start()
-    await server.wait_for_termination()
+    await asyncio.gather(
+        amqp_client.event_consumer(amqp_client.async_wrapper(log.info)),
+        server.wait_for_termination()
+    )

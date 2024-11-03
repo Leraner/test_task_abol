@@ -1,11 +1,17 @@
 from typing import Any, Callable
-
+from .interceptors import KeyAuthClientInterceptor, KeyAuthClientInterceptorStreamUnary
+from pydantic import BaseModel
 import grpc
 
 
 class ClientInterface:
     client: Any
     protos: Any
+
+
+class GRPCLoaderContext(BaseModel):
+    access_token: str | None = None
+    stream_unary_access_token: str | None = None
 
 
 class ClientGRPCLoader(type):
@@ -37,9 +43,31 @@ class ClientGRPCLoader(type):
     @staticmethod
     def load_client(func, address: str, path_to_proto: str):
         async def inner(*args, **kwargs):
-            async with grpc.aio.insecure_channel(address) as channel:
+            interceptors = []
+            context: GRPCLoaderContext | None = next(
+                filter(
+                    lambda var: isinstance(var, GRPCLoaderContext),
+                    [*kwargs.values(), *args],
+                ),
+                None,
+            )
+
+            if context is not None:
+                if context.access_token is not None:
+                    interceptors.append(KeyAuthClientInterceptor(context.access_token))
+
+                if context.stream_unary_access_token is not None:
+                    interceptors.append(
+                        KeyAuthClientInterceptorStreamUnary(context.stream_unary_access_token)
+                    )
+
+            async with grpc.aio.insecure_channel(
+                address, interceptors=interceptors
+            ) as channel:
                 protos, services = grpc.protos_and_services(path_to_proto)  # type: ignore
-                stub_service_name = next(filter(lambda x: "Stub" in x, services.__dict__))
+                stub_service_name = next(
+                    filter(lambda x: "Stub" in x, services.__dict__)
+                )
                 client = services.__dict__[stub_service_name](channel)
 
                 client_and_protos_object = ClientInterface()

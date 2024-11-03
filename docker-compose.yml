@@ -78,6 +78,28 @@ services:
 #    links:
 #      - database
 
+#  auth:
+#    container_name: auth
+#    build: auth
+#    env_file:
+#      - .env
+#
+#    ports:
+#      - 50051:50051
+#
+#    command: >
+#      sh -c "
+#      make gen_protos &&
+#      make migrate &&
+#      python3 main.py"
+#
+#    depends_on:
+#      database:
+#        condition: service_healthy
+#
+#    links:
+#      - database
+
 
 networks:
   rabbitmq_go_net:

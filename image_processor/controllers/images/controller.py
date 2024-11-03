@@ -1,22 +1,23 @@
-import io
+import json
+from typing import AsyncIterable
+
 import json
 from typing import AsyncIterable
 
 import grpc
 import settings
+from db import ImageHandler
 from protos import images_pb2, images_pb2_grpc
-from .services import ProcessImageService
 from schemas import (
     CreateImageSchema,
     ImageDbSchema,
     ImageIdsSchema,
     ImageIdSchema,
     UpdateImageSchema,
-    DatabaseException,
-    LogicException,
 )
-from db import ImageHandler
 from utils import Converter
+
+from .services import ProcessImageService
 
 
 class ImageProcessorController(
@@ -98,15 +99,15 @@ class ImageProcessorController(
             images_ids=image_ids_schema.images_ids,
         )
 
-        images = []
+        proto_images = []
 
         for image in deleted_images_db:
-            images.append(
+            proto_images.append(
                 self.basemodel_to_proto(instance=image, proto_model=images_pb2.Image)
             )
             self.delete_image(image.file_path)
 
-        return images_pb2.DeleteImagesResponse(images=images)
+        return images_pb2.DeleteImagesResponse(images=proto_images)
 
     async def UpdateImages(
         self, request: images_pb2.UpdateImagesRequest, context: grpc.aio.ServicerContext

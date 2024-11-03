@@ -1,5 +1,5 @@
 import fastapi
-from api import ImageProcessorRouter
+from api import ImageProcessorRouter, AuthRouter
 from exceptions import ExceptionHandlers
 import uvicorn
 
@@ -8,6 +8,7 @@ app = fastapi.FastAPI()
 
 routers = [
     ImageProcessorRouter,
+    AuthRouter,
 ]
 
 
