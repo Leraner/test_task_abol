@@ -1,7 +1,7 @@
 import grpc
 from protos import auth_protos_pb2_grpc, auth_protos_pb2
 from utils import Converter
-from schemas import CreateUserSchemaRequest
+from schemas import CreateUserSchemaRequest, DatabaseException
 from .services import AuthService
 from db import AuthHandlers
 import datetime
@@ -48,7 +48,7 @@ class AuthController(
 
         try:
             created_user = await self.create_user(create_schema)
-        except Exception as e:
+        except DatabaseException as _:
             await context.abort(
                 grpc.StatusCode.ALREADY_EXISTS,
                 details="Такой пользователь уже существует",

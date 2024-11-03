@@ -2,7 +2,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from .models import UserModel
 from sqlalchemy import select
-from schemas import CreateUserSchemaRequest
+from schemas import CreateUserSchemaRequest, DatabaseException
 
 
 class AuthDAL:
@@ -18,8 +18,7 @@ class AuthDAL:
             await self.db_session.flush()
             await self.db_session.refresh(new_user)
         except IntegrityError as e:
-            # raise DatabaseException("")
-            raise Exception()
+            raise DatabaseException(e.args[0].split("DETAIL:  ")[1])
 
         return new_user
 
@@ -29,7 +28,7 @@ class AuthDAL:
         try:
             result = await self.db_session.execute(query)
         except IntegrityError as e:
-            raise Exception()
+            raise DatabaseException(e.args[0].split("DETAIL:  ")[1])
 
         row = result.scalar()
         if row is not None:

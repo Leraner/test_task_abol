@@ -14,10 +14,12 @@ from schemas import (
     ImageIdsSchema,
     ImageIdSchema,
     UpdateImageSchema,
+    LogicException,
 )
 from utils import Converter
 
 from .services import ProcessImageService
+from ...schemas import DatabaseException
 
 
 class ImageProcessorController(
@@ -31,7 +33,10 @@ class ImageProcessorController(
         request_iterator: AsyncIterable[images_pb2.UploadImageRequest],
         context: grpc.aio.ServicerContext,
     ):
-        buffer, metadata = await self.get_image_chunks(request_iterator)
+        try:
+            buffer, metadata = await self.get_image_chunks(request_iterator)
+        except LogicException as e:
+            await context.abort(grpc.StatusCode.ABORTED, details=e.message)
 
         create_schemas = []
         processed_images: list[dict] = []
@@ -49,7 +54,10 @@ class ImageProcessorController(
             create_schemas.append(create_schema)
             processed_images.append({"image": processed_image, "file_path": file_path})
 
-        await self.create_images_database(create_schemas)
+        try:
+            await self.create_images_database(create_schemas)
+        except DatabaseException as e:
+            await context.abort(grpc.StatusCode.ABORTED, details=e.message)
 
         for processed_image in processed_images:
             self.save_image(
@@ -63,7 +71,11 @@ class ImageProcessorController(
     async def GetImages(
         self, request: images_pb2.GetImagesRequest, context: grpc.aio.ServicerContext
     ) -> images_pb2.GetImagesResponse:
-        images_db: list[ImageDbSchema] = await self.get_images_database()
+        try:
+            images_db: list[ImageDbSchema] = await self.get_images_database()
+        except DatabaseException as e:
+            await context.abort(grpc.StatusCode.ABORTED, details=e.message)
+
         return images_pb2.GetImagesResponse(
             images=[
                 self.basemodel_to_proto(instance=image, proto_model=images_pb2.Image)
@@ -77,9 +89,15 @@ class ImageProcessorController(
         image_id_schema: ImageIdSchema = self.proto_to_basemodel(
             instance=request, model=ImageIdSchema
         )
-        image_db: ImageDbSchema = await self.get_image_database(
-            image_id=image_id_schema.image_id
-        )
+        try:
+            image_db: ImageDbSchema = await self.get_image_database(
+                image_id=image_id_schema.image_id
+            )
+        except DatabaseException as _:
+            await context.abort(
+                grpc.StatusCode.NOT_FOUND, details="Не найдено такое изображение"
+            )
+
         return images_pb2.GetImageResponse(
             image=self.basemodel_to_proto(
                 instance=image_db, proto_model=images_pb2.Image
@@ -94,10 +112,13 @@ class ImageProcessorController(
             instance=request, model=ImageIdsSchema
         )
 
-        deleted_images_db = await self.delete_images_database(
-            all_=image_ids_schema.all_,
-            images_ids=image_ids_schema.images_ids,
-        )
+        try:
+            deleted_images_db = await self.delete_images_database(
+                all_=image_ids_schema.all_,
+                images_ids=image_ids_schema.images_ids,
+            )
+        except DatabaseException as e:
+            await context.abort(grpc.StatusCode.ABORTED, details=e.message)
 
         proto_images = []
 
@@ -117,11 +138,14 @@ class ImageProcessorController(
         )
         update_schema = UpdateImageSchema(**json.loads(request.update_schema))
 
-        updated_images = await self.update_images_database(
-            all_=image_ids_schema.all_,
-            images_ids=image_ids_schema.images_ids,
-            update_schema=update_schema,
-        )
+        try:
+            updated_images = await self.update_images_database(
+                all_=image_ids_schema.all_,
+                images_ids=image_ids_schema.images_ids,
+                update_schema=update_schema,
+            )
+        except DatabaseException as e:
+            await context.abort(grpc.StatusCode.ABORTED, details=e.message)
 
         proto_images = []
 

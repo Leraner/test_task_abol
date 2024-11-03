@@ -1,4 +1,5 @@
 from .auth import CreateUserSchemaRequest, LoginUserSchemaRequest, UserDbSchema
+from .exceptions import DatabaseException
 
 __all__: list[str] = [
     # Database schemas
@@ -6,5 +7,6 @@ __all__: list[str] = [
     # Request schemas
     "CreateUserSchemaRequest",
     "LoginUserSchemaRequest",
-
+    # Exceptions
+    "DatabaseException",
 ]
