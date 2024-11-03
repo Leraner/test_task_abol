@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package images;
+
+service ImageProcessor {
+    rpc UploadImage (stream UploadImageRequest) returns (UploadImageResponse);
+    rpc GetImages (GetImagesRequest) returns (GetImagesResponse);
+    rpc GetImage (GetImageRequest) returns (GetImageResponse);
+    rpc DeleteImages (DeleteImagesRequest) returns (DeleteImagesResponse);
+    rpc UpdateImages (UpdateImagesRequest) returns (UpdateImagesResponse);
+}
+
+message Metadata {
+    string name = 1;
+    int32 size = 2;
+    string content_type = 4;
+}
+
+message UploadImageRequest {
+    Metadata meta = 1;
+    bytes image = 2;
+}
+
+message UploadImageResponse {
+    bool success = 1;
+}
+
+message GetImagesRequest {}
+
+
+message Image {
+    string id = 1;
+    string name = 2;
+    string file_path = 3;
+    string upload_date = 4;
+    string resolution = 5;
+    int64 size = 6;
+}
+
+message GetImagesResponse {
+    repeated Image images = 1;
+}
+
+
+message GetImageRequest {
+    string image_id = 1;
+}
+
+message GetImageResponse {
+    Image image = 1;
+}
+
+message DeleteImagesRequest {
+    bool all_ = 1;
+    repeated string images_ids = 2;
+}
+
+message DeleteImagesResponse {
+    repeated Image images = 1;
+}
+
+message UpdateImagesRequest {
+    bool all_ = 1;
+    repeated string images_ids = 2;
+    string update_schema = 3;
+}
+
+message UpdateImagesResponse {
+    repeated Image images = 1;
+}

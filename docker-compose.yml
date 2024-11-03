@@ -1,0 +1,87 @@
+services:
+  database:
+    container_name: database
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    command: -p ${POSTGRES_PORT}
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} -p ${POSTGRES_PORT}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management-alpine
+    env_file:
+      - .env
+    ports:
+      - ${RMQ_PORT}:${RMQ_PORT}
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
+    networks:
+      - rabbitmq_go_net
+
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+#  gateway:
+#    container_name: gateway
+#    build: gateway
+#    env_file:
+#      - .env
+#
+#    ports:
+#      - 8000:8000
+#
+#    command: >
+#      sh -c "python3 main.py"
+#
+#    depends_on:
+#      #      - rabbitmq
+#      - database
+#
+#    links:
+#      - image_processor
+
+#  image_processor:
+#    build: image_processor
+#    env_file:
+#      - .env
+#
+#    ports:
+#      - 50050:50050
+#
+#    command: >
+#      sh -c "
+#      make gen_protos &&
+#      make migrate &&
+#      python3 main.py"
+#
+#    depends_on:
+#      database:
+#        condition: service_healthy
+#
+#    links:
+#      - database
+
+
+networks:
+  rabbitmq_go_net:
+    driver: bridge
+
+volumes:
+  pg_data:
