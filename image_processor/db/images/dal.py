@@ -98,16 +98,37 @@ class ImageDAL:
             .subquery()
         )
 
+        subquery_name = (
+            select(ImageModel.name)
+            .where(ImageModel.id.in_(images_ids))
+            .scalar_subquery()
+        )
+
         values = update_schema.model_dump(exclude_unset=True)
 
-        if values.get("name") is not None:
+        if name := values.get("name"):
+            filename_substring = func.substr(
+                ImageModel.name, 1, func.strpos(ImageModel.name, ".") - 1
+            )
+            values["name"] = func.replace(
+                ImageModel.name,
+                filename_substring,
+                name,
+            )
             values["file_path"] = func.replace(
-                ImageModel.file_path, ImageModel.name, values["name"]
+                ImageModel.file_path, filename_substring, name
             )
 
         query = (
             update(ImageModel)
-            .where(ImageModel.name == subquery.c.name)
+            .where(
+                and_(
+                    ImageModel.name == subquery.c.name,
+                    ImageModel.name.not_in(subquery_name),
+                )
+                if all_
+                else ImageModel.name == subquery.c.name
+            )
             .values(**values)
             .returning(ImageModel, subquery.c.name)
         )

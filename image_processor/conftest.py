@@ -53,7 +53,8 @@ async def access_token() -> str:
 @pytest.fixture(scope="function")
 def grpc_client(access_token: str):
     channel = grpc.aio.insecure_channel(
-        f"{settings.HOST}:{settings.PORT}",
+        # {settings.HOST}
+        f"image_processor:{settings.PORT}",
         interceptors=(
             KeyAuthClientInterceptor(access_token),
             KeyAuthClientInterceptorStreamUnary(access_token),

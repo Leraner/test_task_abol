@@ -11,6 +11,9 @@ services:
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
 
+    networks:
+      - shared_net
+
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} -p ${POSTGRES_PORT}" ]
       interval: 5s
@@ -33,77 +36,103 @@ services:
       - rabbitmq_go_net
 
     healthcheck:
-      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      test: [ "CMD", "nc", "-z", "${RMQ_HOST}", "${RMQ_PORT}" ]
       interval: 5s
       timeout: 5s
       retries: 5
 
-#  gateway:
-#    container_name: gateway
-#    build: gateway
-#    env_file:
-#      - .env
-#
-#    ports:
-#      - 8000:8000
-#
-#    command: >
-#      sh -c "python3 main.py"
-#
-#    depends_on:
-#      #      - rabbitmq
-#      - database
-#
-#    links:
-#      - image_processor
+  gateway:
+    container_name: gateway
+    build: gateway
+    env_file:
+      - .env
 
-#  image_processor:
-#    build: image_processor
-#    env_file:
-#      - .env
-#
-#    ports:
-#      - 50050:50050
-#
-#    command: >
-#      sh -c "
-#      make gen_protos &&
-#      make migrate &&
-#      python3 main.py"
-#
-#    depends_on:
-#      database:
-#        condition: service_healthy
-#
-#    links:
-#      - database
+    ports:
+      - 8000:8000
 
-#  auth:
-#    container_name: auth
-#    build: auth
-#    env_file:
-#      - .env
-#
-#    ports:
-#      - 50051:50051
-#
-#    command: >
-#      sh -c "
-#      make gen_protos &&
-#      make migrate &&
-#      python3 main.py"
-#
-#    depends_on:
-#      database:
-#        condition: service_healthy
-#
-#    links:
-#      - database
+    command: >
+      sh -c "python3 main.py"
+
+    networks:
+      - rabbitmq_go_net
+      - shared_net
+
+    depends_on:
+      database:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+    links:
+      - auth
+      - image_processor
+      - rabbitmq
+
+
+  image_processor:
+    container_name: image_processor
+    build: image_processor
+    env_file:
+      - .env
+
+    ports:
+      - ${IMAGE_PROCESSOR_PORT}:${IMAGE_PROCESSOR_PORT}
+
+    volumes:
+      - files_data:/src/media
+
+    command: >
+      sh -c "
+      make gen_protos &&
+      python3 main.py"
+
+    networks:
+      - rabbitmq_go_net
+      - shared_net
+
+    depends_on:
+      database:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+    links:
+      - database
+      - rabbitmq
+
+  auth:
+    container_name: auth
+    build: auth
+    env_file:
+      - .env
+
+    ports:
+      - ${AUTH_PORT}:${AUTH_PORT}
+
+    networks:
+      - shared_net
+
+    command: >
+      sh -c "
+      make gen_protos &&
+      make migrate &&
+      python3 main.py"
+
+    depends_on:
+      database:
+        condition: service_healthy
+
+    links:
+      - database
 
 
 networks:
   rabbitmq_go_net:
     driver: bridge
 
+  shared_net:
+    driver: bridge
+
 volumes:
   pg_data:
+  files_data:

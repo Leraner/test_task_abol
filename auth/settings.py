@@ -10,13 +10,13 @@ ALGORITHM = os.getenv("ALGORITHM", "HS256")
 DB_NAME = os.getenv("POSTGRES_DB", "postgres")
 DB_USER = os.getenv("POSTGRES_USER", "postgres")
 DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", "postgres")
-DB_HOST = os.getenv("POSTGRES_HOST", "0.0.0.0")  # "database"
+DB_HOST = "database"  # os.getenv("POSTGRES_HOST", "0.0.0.0")
 DB_PORT = os.getenv("POSTGRES_PORT", "5432")
 DB_DIALECT = os.getenv("DB_DIALECT", "postgresql")
 DB_DRIVER = os.getenv("DB_DRIVER", "asyncpg")
 
-PORT = os.getenv("PORT", "50051")
-HOST = os.getenv("HOST", "0.0.0.0")
+PORT = os.getenv("AUTH_PORT", "50051")
+HOST = os.getenv("AUTH_HOST", "0.0.0.0")
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 10))
 

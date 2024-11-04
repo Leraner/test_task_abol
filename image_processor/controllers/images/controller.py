@@ -17,6 +17,7 @@ from schemas import (
     LogicException,
     PaginatedImagesSchema,
     DatabaseException,
+    ValidationException,
 )
 from utils import Converter
 
@@ -145,7 +146,10 @@ class ImageProcessorController(
         image_id_schema: ImageIdSchema = self.proto_to_basemodel(
             instance=request, model=ImageIdSchema
         )
-        update_schema = UpdateImageSchema(**json.loads(request.update_schema))
+        try:
+            update_schema = UpdateImageSchema(**json.loads(request.update_schema))
+        except ValidationException as e:
+            await context.abort(grpc.StatusCode.ABORTED, details=e.message)
 
         try:
             updated_images = await self.update_images_database(

@@ -1,4 +1,5 @@
 from pydantic import BaseModel, computed_field, model_validator
+from ..exceptions import ValidationException
 import settings
 import uuid
 
@@ -21,3 +22,19 @@ class ImageIdSchema(BaseModel):
 
 class UpdateImageSchema(BaseModel):
     name: str | None = None
+
+    @model_validator(mode="after")
+    def validate_name(self):
+        if self.name is None:
+            return self
+
+        name: list[str] = self.name.split(".")
+
+        if len(name) > 2:
+            raise ValidationException(
+                "Неправильное имя файла. Пример: file_name.png/file_name"
+            )
+
+        self.name = name[0]
+
+        return self
