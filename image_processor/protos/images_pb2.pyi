@@ -30,8 +30,12 @@ class UploadImageResponse(_message.Message):
     def __init__(self, success: bool = ...) -> None: ...
 
 class GetImagesRequest(_message.Message):
-    __slots__ = ()
-    def __init__(self) -> None: ...
+    __slots__ = ("page", "size")
+    PAGE_FIELD_NUMBER: _ClassVar[int]
+    SIZE_FIELD_NUMBER: _ClassVar[int]
+    page: int
+    size: int
+    def __init__(self, page: _Optional[int] = ..., size: _Optional[int] = ...) -> None: ...
 
 class Image(_message.Message):
     __slots__ = ("id", "name", "file_path", "upload_date", "resolution", "size")
@@ -50,10 +54,20 @@ class Image(_message.Message):
     def __init__(self, id: _Optional[str] = ..., name: _Optional[str] = ..., file_path: _Optional[str] = ..., upload_date: _Optional[str] = ..., resolution: _Optional[str] = ..., size: _Optional[int] = ...) -> None: ...
 
 class GetImagesResponse(_message.Message):
-    __slots__ = ("images",)
-    IMAGES_FIELD_NUMBER: _ClassVar[int]
-    images: _containers.RepeatedCompositeFieldContainer[Image]
-    def __init__(self, images: _Optional[_Iterable[_Union[Image, _Mapping]]] = ...) -> None: ...
+    __slots__ = ("has_next_page", "has_previous_page", "total_count", "total_pages", "page", "items")
+    HAS_NEXT_PAGE_FIELD_NUMBER: _ClassVar[int]
+    HAS_PREVIOUS_PAGE_FIELD_NUMBER: _ClassVar[int]
+    TOTAL_COUNT_FIELD_NUMBER: _ClassVar[int]
+    TOTAL_PAGES_FIELD_NUMBER: _ClassVar[int]
+    PAGE_FIELD_NUMBER: _ClassVar[int]
+    ITEMS_FIELD_NUMBER: _ClassVar[int]
+    has_next_page: bool
+    has_previous_page: bool
+    total_count: int
+    total_pages: int
+    page: int
+    items: _containers.RepeatedCompositeFieldContainer[Image]
+    def __init__(self, has_next_page: bool = ..., has_previous_page: bool = ..., total_count: _Optional[int] = ..., total_pages: _Optional[int] = ..., page: _Optional[int] = ..., items: _Optional[_Iterable[_Union[Image, _Mapping]]] = ...) -> None: ...
 
 class GetImageRequest(_message.Message):
     __slots__ = ("image_id",)

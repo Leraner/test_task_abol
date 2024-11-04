@@ -8,10 +8,12 @@ from schemas import (
     ImageDbSchema,
     UpdateImageSchema,
     UpdatedImageDbSchema,
+    PaginatedImagesSchema,
 )
+from ..utils import Pagination
 
 
-class ImageHandler:
+class ImageHandler(Pagination):
     @DatabaseConnection.create_session
     async def create_images_database(
         self, create_schemas: list[CreateImageSchema], db_session: AsyncSession
@@ -30,6 +32,22 @@ class ImageHandler:
         image_dal = ImageDAL(db_session)
         fetched_images = await image_dal.get_images()
         return [ImageDbSchema.model_validate(image) for image in fetched_images]
+
+    @DatabaseConnection.create_session
+    async def get_paginated_images_database(
+        self, page: int, size: int, db_session: AsyncSession
+    ) -> PaginatedImagesSchema:
+        image_dal = ImageDAL(db_session)
+        fetched_images = await image_dal.get_paginated_images(page=page, size=size)
+        total_count = fetched_images[0][1] if fetched_images else 0
+        images = [ImageDbSchema.model_validate(image[0]) for image in fetched_images]
+        return self.get_paginated_data(
+            page=page,
+            size=size,
+            total_count=total_count,
+            objects=images,
+            model=PaginatedImagesSchema,
+        )
 
     @DatabaseConnection.create_session
     async def get_image_database(

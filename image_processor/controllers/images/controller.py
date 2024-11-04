@@ -15,11 +15,12 @@ from schemas import (
     ImageIdSchema,
     UpdateImageSchema,
     LogicException,
+    PaginatedImagesSchema,
+    DatabaseException,
 )
 from utils import Converter
 
 from .services import ProcessImageService
-from ...schemas import DatabaseException
 
 
 class ImageProcessorController(
@@ -72,15 +73,16 @@ class ImageProcessorController(
         self, request: images_pb2.GetImagesRequest, context: grpc.aio.ServicerContext
     ) -> images_pb2.GetImagesResponse:
         try:
-            images_db: list[ImageDbSchema] = await self.get_images_database()
+            paginated_images_db: PaginatedImagesSchema = (
+                await self.get_paginated_images_database(
+                    page=request.page, size=request.size
+                )
+            )
         except DatabaseException as e:
             await context.abort(grpc.StatusCode.ABORTED, details=e.message)
 
-        return images_pb2.GetImagesResponse(
-            images=[
-                self.basemodel_to_proto(instance=image, proto_model=images_pb2.Image)
-                for image in images_db
-            ]
+        return self.basemodel_to_proto(
+            instance=paginated_images_db, proto_model=images_pb2.GetImagesResponse
         )
 
     async def GetImage(

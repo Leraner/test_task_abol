@@ -1,6 +1,7 @@
 from .images import (
     CreateImageSchema,
     ImageDbSchema,
+    PaginatedImagesSchema,
     UpdatedImageDbSchema,
     UpdateImageSchema,
     ImageIdsSchema,
@@ -12,6 +13,7 @@ __all__: list[str] = [
     # Database schemas
     "ImageDbSchema",
     "UpdatedImageDbSchema",
+    "PaginatedImagesSchema",
     # Request schemas
     "CreateImageSchema",
     "UpdateImageSchema",

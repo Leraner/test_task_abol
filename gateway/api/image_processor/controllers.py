@@ -43,11 +43,13 @@ class ImageProcessorController(metaclass=ClientGRPCLoader):
     @ClientGRPCLoader.annotate
     async def get_images(
         self,
+        page: int,
+        size: int,
         interface: ClientInterface,
         context: GRPCLoaderContext = GRPCLoaderContext(),
     ):
         response = await interface.client.GetImages(
-            interface.protos.GetImagesRequest(),
+            interface.protos.GetImagesRequest(page=page, size=size),
             timeout=5,
         )
         return response

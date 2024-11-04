@@ -18,3 +18,12 @@ class ImagesSchemaResponse(BaseModel):
 
 class UpdateImagesSchema(BaseModel):
     name: str | None = None
+
+
+class PaginatedImagesSchemaResponse(BaseModel):
+    has_next_page: bool = False
+    has_previous_page: bool = False
+    total_count: int
+    total_pages: int
+    page: int
+    items: list[ImageSchemaResponse]

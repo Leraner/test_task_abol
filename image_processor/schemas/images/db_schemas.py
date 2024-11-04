@@ -24,3 +24,12 @@ class UpdatedImageDbSchema(ImageDbSchema):
         if self.name != __context["_old_name"]:
             self._old_name = __context["_old_name"]
         return super().model_post_init(__context)
+
+
+class PaginatedImagesSchema(BaseModel):
+    has_next_page: bool
+    has_previous_page: bool
+    total_count: int
+    total_pages: int
+    page: int
+    items: list[ImageDbSchema]

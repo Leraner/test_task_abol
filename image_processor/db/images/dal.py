@@ -1,5 +1,5 @@
 import uuid
-from typing import Sequence, Any
+from typing import Sequence, Any, Tuple
 
 from schemas import CreateImageSchema, UpdateImageSchema, DatabaseException
 from sqlalchemy import select, delete, update, func, Row
@@ -35,6 +35,25 @@ class ImageDAL:
             raise DatabaseException(e.args[0].split("DETAIL:  ")[1])
 
         return new_images
+
+    async def get_paginated_images(
+        self, page: int, size: int
+    ) -> Sequence[Row[tuple[ImageModel, Any]]]:
+        query = (
+            select(ImageModel, func.count(ImageModel.id).over().label("count"))
+            .group_by(ImageModel.id)
+            .offset((page - 1) * size)
+            .limit(size)
+        )
+
+        try:
+            result = await self.db_session.execute(query)
+        except IntegrityError as e:
+            raise DatabaseException(e.args[0].split("DETAIL:  ")[1])
+
+        rows = result.fetchall()
+
+        return rows
 
     async def get_images(
         self,

@@ -25,7 +25,10 @@ message UploadImageResponse {
     bool success = 1;
 }
 
-message GetImagesRequest {}
+message GetImagesRequest {
+    uint32 page = 1;
+    uint32 size = 2;
+}
 
 
 message Image {
@@ -38,7 +41,12 @@ message Image {
 }
 
 message GetImagesResponse {
-    repeated Image images = 1;
+    bool has_next_page = 1;
+    bool has_previous_page = 2;
+    uint32 total_count = 3;
+    uint32 total_pages = 4;
+    uint32 page = 5;
+    repeated Image items = 6;
 }
 
 

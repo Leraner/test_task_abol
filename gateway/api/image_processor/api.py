@@ -8,7 +8,12 @@ from utils import AMQPClient
 from grpc_loader import GRPCLoaderContext
 
 from .controllers import ImageProcessorController
-from .schemas import ImagesSchemaResponse, ImageSchemaResponse, UpdateImagesSchema
+from .schemas import (
+    ImagesSchemaResponse,
+    PaginatedImagesSchemaResponse,
+    UpdateImagesSchema,
+    ImageSchemaResponse,
+)
 from ..base import BaseRouter
 
 
@@ -27,8 +32,8 @@ class ImageProcessorRouter(BaseRouter):
     }
 
     response_models = {
-        "get_images": ImagesSchemaResponse,
-        "get_image": ImageSchemaResponse,
+        "get_images": PaginatedImagesSchemaResponse,
+        "get_image": ImagesSchemaResponse,
         "delete_images": ImagesSchemaResponse,
         "patch_update_images": ImagesSchemaResponse,
     }
@@ -49,6 +54,8 @@ class ImageProcessorRouter(BaseRouter):
     @classmethod
     async def get_images(
         cls,
+        page: int = Query(default=1, ge=1),
+        size: int = Query(default=50, ge=1),
         amqp_client: AMQPClient = Depends(AMQPClient().init),
         access_token: str = Security(api_key_header),
     ):
@@ -56,9 +63,11 @@ class ImageProcessorRouter(BaseRouter):
             amqp_client.event_producer(message="Event: get all images")
         )
         response = await cls.controller.get_images(
-            context=GRPCLoaderContext(access_token=access_token)
+            page=page, size=size, context=GRPCLoaderContext(access_token=access_token)
         )
-        return cls.proto_to_basemodel(instance=response, model=ImagesSchemaResponse)
+        return cls.proto_to_basemodel(
+            instance=response, model=PaginatedImagesSchemaResponse
+        )
 
     @classmethod
     async def get_image(
@@ -91,7 +100,9 @@ class ImageProcessorRouter(BaseRouter):
             )
         )
         response = await cls.controller.delete_images(
-            all_=all_, images_ids=images_ids, context=GRPCLoaderContext(access_token=access_token)
+            all_=all_,
+            images_ids=images_ids,
+            context=GRPCLoaderContext(access_token=access_token),
         )
         return cls.proto_to_basemodel(instance=response, model=ImagesSchemaResponse)
 
