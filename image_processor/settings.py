@@ -13,7 +13,7 @@ ALGORITHM = os.getenv("ALGORITHM", "HS256")
 DB_NAME = os.getenv("POSTGRES_DB", "postgres")
 DB_USER = os.getenv("POSTGRES_USER", "postgres")
 DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", "postgres")
-DB_HOST = "database"  # os.getenv("POSTGRES_HOST", "0.0.0.0")
+DB_HOST = os.getenv("POSTGRES_HOST", "0.0.0.0")
 DB_PORT = os.getenv("POSTGRES_PORT", "5432")
 DB_DIALECT = os.getenv("DB_DIALECT", "postgresql")
 DB_DRIVER = os.getenv("DB_DRIVER", "asyncpg")
@@ -27,7 +27,7 @@ DATABASE_URL = (
     f"{DB_DIALECT}+{DB_DRIVER}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
 
-RABBITMQ_BROKER_URL = "amqp://guest:guest@rabbitmq/"
+RABBITMQ_BROKER_URL = "amqp://guest:guest@localhost/"
 
 BASE_DIR_MEDIA = Path("media")
 
