@@ -1,9 +1,6 @@
 import json
 from typing import AsyncIterable
 
-import json
-from typing import AsyncIterable
-
 import grpc
 import settings
 from db import ImageHandler

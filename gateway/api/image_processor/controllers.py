@@ -1,6 +1,8 @@
 import uuid
 from typing import Iterable
 
+import grpc.aio
+from utils import retry
 from .schemas import UpdateImagesSchema
 import settings
 from fastapi import UploadFile
@@ -11,6 +13,7 @@ class ImageProcessorController(metaclass=ClientGRPCLoader):
     address: str = settings.microservices["image_processor"]["address"]
     path_to_proto: str = settings.microservices["image_processor"]["path_to_proto"]
 
+    @retry(exceptions=(grpc.aio.AioRpcError))
     @ClientGRPCLoader.annotate
     async def upload_file(
         self,
@@ -40,6 +43,7 @@ class ImageProcessorController(metaclass=ClientGRPCLoader):
 
         return response
 
+    @retry(exceptions=(grpc.aio.AioRpcError))
     @ClientGRPCLoader.annotate
     async def get_images(
         self,
@@ -54,6 +58,7 @@ class ImageProcessorController(metaclass=ClientGRPCLoader):
         )
         return response
 
+    @retry(exceptions=(grpc.aio.AioRpcError))
     @ClientGRPCLoader.annotate
     async def get_image(
         self,
@@ -67,6 +72,7 @@ class ImageProcessorController(metaclass=ClientGRPCLoader):
         )
         return response
 
+    @retry(exceptions=(grpc.aio.AioRpcError))
     @ClientGRPCLoader.annotate
     async def delete_images(
         self,
@@ -84,6 +90,7 @@ class ImageProcessorController(metaclass=ClientGRPCLoader):
         )
         return response
 
+    @retry(exceptions=(grpc.aio.AioRpcError))
     @ClientGRPCLoader.annotate
     async def update_image(
         self,
