@@ -2,7 +2,7 @@ import uuid
 from typing import Sequence, Any, Tuple
 
 from schemas import CreateImageSchema, UpdateImageSchema, DatabaseException
-from sqlalchemy import select, delete, update, func, Row
+from sqlalchemy import select, delete, update, func, Row, and_
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -124,7 +124,6 @@ class ImageDAL:
     async def delete_images(
         self, all_: bool, images_ids: list[uuid.UUID]
     ) -> Sequence[ImageModel]:
-
         subquery = (
             select(ImageModel)
             .where(
@@ -135,9 +134,22 @@ class ImageDAL:
             .subquery()
         )
 
+        subquery_name = (
+            select(ImageModel.name)
+            .where(ImageModel.id.in_(images_ids))
+            .scalar_subquery()
+        )
+
         query = (
             delete(ImageModel)
-            .where(ImageModel.name == subquery.c.name)
+            .where(
+                and_(
+                    ImageModel.name == subquery.c.name,
+                    ImageModel.name.not_in(subquery_name),
+                )
+                if all_
+                else ImageModel.name == subquery.c.name
+            )
             .returning(ImageModel)
         )
 

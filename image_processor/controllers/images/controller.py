@@ -50,13 +50,15 @@ class ImageProcessorController(
                 name=metadata.name,
                 file_path=file_path,
                 resolution=resolution,
-                size=metadata.size,
+                size=self.get_image_size(processed_image),
             )
             create_schemas.append(create_schema)
             processed_images.append({"image": processed_image, "file_path": file_path})
 
         try:
-            await self.create_images_database(create_schemas)
+            uploaded_images: list[ImageDbSchema] = await self.create_images_database(
+                create_schemas
+            )
         except DatabaseException as e:
             await context.abort(grpc.StatusCode.ABORTED, details=e.message)
 
@@ -67,7 +69,12 @@ class ImageProcessorController(
                 file_path=processed_image["file_path"],
             )
 
-        return images_pb2.UploadImageResponse(success=True)
+        return images_pb2.UploadImageResponse(
+            images=[
+                self.basemodel_to_proto(instance=image, proto_model=images_pb2.Image)
+                for image in uploaded_images
+            ],
+        )
 
     async def GetImages(
         self, request: images_pb2.GetImagesRequest, context: grpc.aio.ServicerContext
@@ -135,15 +142,14 @@ class ImageProcessorController(
     async def UpdateImages(
         self, request: images_pb2.UpdateImagesRequest, context: grpc.aio.ServicerContext
     ) -> images_pb2.UpdateImagesResponse:
-        image_ids_schema: ImageIdsSchema = self.proto_to_basemodel(
-            instance=request, model=ImageIdsSchema
+        image_id_schema: ImageIdSchema = self.proto_to_basemodel(
+            instance=request, model=ImageIdSchema
         )
         update_schema = UpdateImageSchema(**json.loads(request.update_schema))
 
         try:
             updated_images = await self.update_images_database(
-                all_=image_ids_schema.all_,
-                images_ids=image_ids_schema.images_ids,
+                images_ids=[image_id_schema.image_id],
                 update_schema=update_schema,
             )
         except DatabaseException as e:

@@ -24,10 +24,10 @@ class UploadImageRequest(_message.Message):
     def __init__(self, meta: _Optional[_Union[Metadata, _Mapping]] = ..., image: _Optional[bytes] = ...) -> None: ...
 
 class UploadImageResponse(_message.Message):
-    __slots__ = ("success",)
-    SUCCESS_FIELD_NUMBER: _ClassVar[int]
-    success: bool
-    def __init__(self, success: bool = ...) -> None: ...
+    __slots__ = ("images",)
+    IMAGES_FIELD_NUMBER: _ClassVar[int]
+    images: _containers.RepeatedCompositeFieldContainer[Image]
+    def __init__(self, images: _Optional[_Iterable[_Union[Image, _Mapping]]] = ...) -> None: ...
 
 class GetImagesRequest(_message.Message):
     __slots__ = ("page", "size")
@@ -96,14 +96,12 @@ class DeleteImagesResponse(_message.Message):
     def __init__(self, images: _Optional[_Iterable[_Union[Image, _Mapping]]] = ...) -> None: ...
 
 class UpdateImagesRequest(_message.Message):
-    __slots__ = ("all_", "images_ids", "update_schema")
-    ALL__FIELD_NUMBER: _ClassVar[int]
-    IMAGES_IDS_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("image_id", "update_schema")
+    IMAGE_ID_FIELD_NUMBER: _ClassVar[int]
     UPDATE_SCHEMA_FIELD_NUMBER: _ClassVar[int]
-    all_: bool
-    images_ids: _containers.RepeatedScalarFieldContainer[str]
+    image_id: str
     update_schema: str
-    def __init__(self, all_: bool = ..., images_ids: _Optional[_Iterable[str]] = ..., update_schema: _Optional[str] = ...) -> None: ...
+    def __init__(self, image_id: _Optional[str] = ..., update_schema: _Optional[str] = ...) -> None: ...
 
 class UpdateImagesResponse(_message.Message):
     __slots__ = ("images",)

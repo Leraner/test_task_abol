@@ -58,7 +58,9 @@ class ClientGRPCLoader(type):
 
                 if context.stream_unary_access_token is not None:
                     interceptors.append(
-                        KeyAuthClientInterceptorStreamUnary(context.stream_unary_access_token)
+                        KeyAuthClientInterceptorStreamUnary(
+                            context.stream_unary_access_token
+                        )
                     )
 
             async with grpc.aio.insecure_channel(

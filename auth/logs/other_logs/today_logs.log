@@ -48,3 +48,7 @@
 2024-11-03T19:57:49.422100+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/auth/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
 2024-11-03T19:58:15.163005+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/auth/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
 2024-11-03T19:59:42.402888+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/auth/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-03T21:00:50.359002+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/auth/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-03T21:00:50.532747+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/auth/server.py:run_server: 17]: Microservice started on address: 0.0.0.0:50051
+2024-11-04T08:22:28.985714+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/auth/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T08:22:29.219467+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/auth/server.py:run_server: 17]: Microservice started on address: 0.0.0.0:50051

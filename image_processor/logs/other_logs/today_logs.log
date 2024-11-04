@@ -1,0 +1,99 @@
+2024-11-04T08:17:18.763784+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T08:17:18.852310+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T08:22:41.289018+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T08:23:16.995316+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T08:58:42.306221+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T08:58:42.393803+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T09:08:51.466184+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T09:08:51.556319+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T09:09:10.340549+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T09:09:10.422578+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T09:09:38.405725+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T09:09:38.487522+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:03:58.524072+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:03:58.618495+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:05:22.557400+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images
+2024-11-04T10:05:36.673285+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:05:52.911889+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:06:39.344688+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:06:42.096094+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:06:42.181475+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:06:43.783098+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:07:21.956357+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:07:22.032952+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:07:23.568196+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:08:12.873453+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:08:12.952541+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:08:14.259947+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:08:22.777386+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:08:22.859900+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:08:24.354928+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:08:50.059198+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:08:50.134384+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:08:51.883182+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:09:05.772014+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:09:05.850817+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:09:06.882043+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:09:16.012757+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:09:16.101089+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:09:17.008605+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:10:22.637522+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:10:22.720516+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:10:24.407431+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = c603189e-1002-4a8d-8a74-570f06a7a94a
+2024-11-04T10:13:13.592597+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:13:13.680837+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:13:22.700017+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T10:13:46.558612+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T10:13:56.609413+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:13:56.686859+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:14:07.711797+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T10:14:26.748618+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T10:14:59.287638+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:14:59.368222+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:15:00.663746+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T10:15:27.902079+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T10:15:52.922630+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:15:53.009447+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:15:54.333574+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T10:16:20.385823+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: Update images with params: image_id = 59693e83-fd87-4308-9af1-1a313bc58b4d
+2024-11-04T10:17:17.542215+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:17:17.605926+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T10:20:59.727280+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T10:20:59.817263+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T11:09:03.860073+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:09:23.720530+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:09:32.343112+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:09:36.880947+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images
+2024-11-04T11:09:51.189141+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: delete images with params: all_ = True, images_ids = [UUID('099b38bd-5ff3-43ac-867e-aed60159f901')]
+2024-11-04T11:10:20.801470+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T11:10:20.890402+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T11:10:26.958937+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T11:10:27.009882+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T11:10:38.448011+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:10:42.797479+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:10:46.884446+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images
+2024-11-04T11:10:47.169304+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images
+2024-11-04T11:10:55.425137+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: delete images with params: all_ = True, images_ids = [UUID('0b4c58f9-0f88-4e93-a961-02e40558dc4f')]
+2024-11-04T11:16:20.096676+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T11:16:20.187824+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T11:16:26.295690+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:16:31.615230+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:16:35.033567+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images
+2024-11-04T11:16:45.012876+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: delete images with params: all_ = True, images_ids = [UUID('156cc06f-4526-4ae9-ad8c-eb77f1f4c585')]
+2024-11-04T11:19:03.957023+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T11:19:04.047580+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T11:19:11.824065+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T11:19:11.892178+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T11:19:21.227528+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:19:38.212584+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:19:43.902416+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:19:47.096050+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images
+2024-11-04T11:19:55.955407+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: delete images with params: all_ = True, images_ids = [UUID('4fef9eb5-8c52-4221-8df6-823fc8b642a4')]
+2024-11-04T11:40:22.167884+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T11:40:22.259024+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T11:40:35.064835+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:40:49.808640+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:40:54.874196+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: upload image
+2024-11-04T11:40:58.907489+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images
+2024-11-04T11:41:07.012104+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: delete images with params: all_ = True, images_ids = [UUID('0423b5fb-9703-49a8-8269-104a4d04f28d')]
+2024-11-04T11:41:11.037621+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images

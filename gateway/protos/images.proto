@@ -22,7 +22,7 @@ message UploadImageRequest {
 }
 
 message UploadImageResponse {
-    bool success = 1;
+    repeated Image images = 1;
 }
 
 message GetImagesRequest {
@@ -68,8 +68,7 @@ message DeleteImagesResponse {
 }
 
 message UpdateImagesRequest {
-    bool all_ = 1;
-    repeated string images_ids = 2;
+    string image_id = 2;
     string update_schema = 3;
 }
 

@@ -10,6 +10,13 @@ from schemas import LogicException
 
 class ProcessImageService:
 
+    def get_image_size(
+        self, image: Image.Image | Generator[Image.Image, None, None]
+    ) -> int:
+        if isinstance(image, Image.Image):
+            return len(image.tobytes())
+        return sum([len(frame.tobytes()) for frame in image])
+
     async def get_image_chunks(
         self, request_iterator: AsyncIterable[images_pb2.UploadImageRequest]
     ) -> tuple[BytesIO, images_pb2.Metadata]:

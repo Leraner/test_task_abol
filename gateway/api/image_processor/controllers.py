@@ -85,18 +85,16 @@ class ImageProcessorController(metaclass=ClientGRPCLoader):
         return response
 
     @ClientGRPCLoader.annotate
-    async def update_images(
+    async def update_image(
         self,
-        all_: bool,
-        images_ids: list[uuid.UUID],
+        image_id: uuid.UUID,
         update_schema: UpdateImagesSchema,
         interface: ClientInterface,
         context: GRPCLoaderContext = GRPCLoaderContext(),
     ):
         response = await interface.client.UpdateImages(
             interface.protos.UpdateImagesRequest(
-                all_=all_,
-                images_ids=[str(image_id) for image_id in images_ids],
+                image_id=str(image_id),
                 update_schema=update_schema.model_dump_json(exclude_unset=True),
             )
         )

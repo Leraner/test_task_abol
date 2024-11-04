@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13protos/images.proto\x12\x06images\"<\n\x08Metadata\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04size\x18\x02 \x01(\x05\x12\x14\n\x0c\x63ontent_type\x18\x04 \x01(\t\"C\n\x12UploadImageRequest\x12\x1e\n\x04meta\x18\x01 \x01(\x0b\x32\x10.images.Metadata\x12\r\n\x05image\x18\x02 \x01(\x0c\"&\n\x13UploadImageResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\".\n\x10GetImagesRequest\x12\x0c\n\x04page\x18\x01 \x01(\r\x12\x0c\n\x04size\x18\x02 \x01(\r\"k\n\x05Image\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x13\n\x0bupload_date\x18\x04 \x01(\t\x12\x12\n\nresolution\x18\x05 \x01(\t\x12\x0c\n\x04size\x18\x06 \x01(\x03\"\x9b\x01\n\x11GetImagesResponse\x12\x15\n\rhas_next_page\x18\x01 \x01(\x08\x12\x19\n\x11has_previous_page\x18\x02 \x01(\x08\x12\x13\n\x0btotal_count\x18\x03 \x01(\r\x12\x13\n\x0btotal_pages\x18\x04 \x01(\r\x12\x0c\n\x04page\x18\x05 \x01(\r\x12\x1c\n\x05items\x18\x06 \x03(\x0b\x32\r.images.Image\"#\n\x0fGetImageRequest\x12\x10\n\x08image_id\x18\x01 \x01(\t\"0\n\x10GetImageResponse\x12\x1c\n\x05image\x18\x01 \x01(\x0b\x32\r.images.Image\"7\n\x13\x44\x65leteImagesRequest\x12\x0c\n\x04\x61ll_\x18\x01 \x01(\x08\x12\x12\n\nimages_ids\x18\x02 \x03(\t\"5\n\x14\x44\x65leteImagesResponse\x12\x1d\n\x06images\x18\x01 \x03(\x0b\x32\r.images.Image\"N\n\x13UpdateImagesRequest\x12\x0c\n\x04\x61ll_\x18\x01 \x01(\x08\x12\x12\n\nimages_ids\x18\x02 \x03(\t\x12\x15\n\rupdate_schema\x18\x03 \x01(\t\"5\n\x14UpdateImagesResponse\x12\x1d\n\x06images\x18\x01 \x03(\x0b\x32\r.images.Image2\xf1\x02\n\x0eImageProcessor\x12H\n\x0bUploadImage\x12\x1a.images.UploadImageRequest\x1a\x1b.images.UploadImageResponse(\x01\x12@\n\tGetImages\x12\x18.images.GetImagesRequest\x1a\x19.images.GetImagesResponse\x12=\n\x08GetImage\x12\x17.images.GetImageRequest\x1a\x18.images.GetImageResponse\x12I\n\x0c\x44\x65leteImages\x12\x1b.images.DeleteImagesRequest\x1a\x1c.images.DeleteImagesResponse\x12I\n\x0cUpdateImages\x12\x1b.images.UpdateImagesRequest\x1a\x1c.images.UpdateImagesResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x13protos/images.proto\x12\x06images\"<\n\x08Metadata\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04size\x18\x02 \x01(\x05\x12\x14\n\x0c\x63ontent_type\x18\x04 \x01(\t\"C\n\x12UploadImageRequest\x12\x1e\n\x04meta\x18\x01 \x01(\x0b\x32\x10.images.Metadata\x12\r\n\x05image\x18\x02 \x01(\x0c\"4\n\x13UploadImageResponse\x12\x1d\n\x06images\x18\x01 \x03(\x0b\x32\r.images.Image\".\n\x10GetImagesRequest\x12\x0c\n\x04page\x18\x01 \x01(\r\x12\x0c\n\x04size\x18\x02 \x01(\r\"k\n\x05Image\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x11\n\tfile_path\x18\x03 \x01(\t\x12\x13\n\x0bupload_date\x18\x04 \x01(\t\x12\x12\n\nresolution\x18\x05 \x01(\t\x12\x0c\n\x04size\x18\x06 \x01(\x03\"\x9b\x01\n\x11GetImagesResponse\x12\x15\n\rhas_next_page\x18\x01 \x01(\x08\x12\x19\n\x11has_previous_page\x18\x02 \x01(\x08\x12\x13\n\x0btotal_count\x18\x03 \x01(\r\x12\x13\n\x0btotal_pages\x18\x04 \x01(\r\x12\x0c\n\x04page\x18\x05 \x01(\r\x12\x1c\n\x05items\x18\x06 \x03(\x0b\x32\r.images.Image\"#\n\x0fGetImageRequest\x12\x10\n\x08image_id\x18\x01 \x01(\t\"0\n\x10GetImageResponse\x12\x1c\n\x05image\x18\x01 \x01(\x0b\x32\r.images.Image\"7\n\x13\x44\x65leteImagesRequest\x12\x0c\n\x04\x61ll_\x18\x01 \x01(\x08\x12\x12\n\nimages_ids\x18\x02 \x03(\t\"5\n\x14\x44\x65leteImagesResponse\x12\x1d\n\x06images\x18\x01 \x03(\x0b\x32\r.images.Image\">\n\x13UpdateImagesRequest\x12\x10\n\x08image_id\x18\x02 \x01(\t\x12\x15\n\rupdate_schema\x18\x03 \x01(\t\"5\n\x14UpdateImagesResponse\x12\x1d\n\x06images\x18\x01 \x03(\x0b\x32\r.images.Image2\xf1\x02\n\x0eImageProcessor\x12H\n\x0bUploadImage\x12\x1a.images.UploadImageRequest\x1a\x1b.images.UploadImageResponse(\x01\x12@\n\tGetImages\x12\x18.images.GetImagesRequest\x1a\x19.images.GetImagesResponse\x12=\n\x08GetImage\x12\x17.images.GetImageRequest\x1a\x18.images.GetImageResponse\x12I\n\x0c\x44\x65leteImages\x12\x1b.images.DeleteImagesRequest\x1a\x1c.images.DeleteImagesResponse\x12I\n\x0cUpdateImages\x12\x1b.images.UpdateImagesRequest\x1a\x1c.images.UpdateImagesResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,25 +36,25 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_UPLOADIMAGEREQUEST']._serialized_start=93
   _globals['_UPLOADIMAGEREQUEST']._serialized_end=160
   _globals['_UPLOADIMAGERESPONSE']._serialized_start=162
-  _globals['_UPLOADIMAGERESPONSE']._serialized_end=200
-  _globals['_GETIMAGESREQUEST']._serialized_start=202
-  _globals['_GETIMAGESREQUEST']._serialized_end=248
-  _globals['_IMAGE']._serialized_start=250
-  _globals['_IMAGE']._serialized_end=357
-  _globals['_GETIMAGESRESPONSE']._serialized_start=360
-  _globals['_GETIMAGESRESPONSE']._serialized_end=515
-  _globals['_GETIMAGEREQUEST']._serialized_start=517
-  _globals['_GETIMAGEREQUEST']._serialized_end=552
-  _globals['_GETIMAGERESPONSE']._serialized_start=554
-  _globals['_GETIMAGERESPONSE']._serialized_end=602
-  _globals['_DELETEIMAGESREQUEST']._serialized_start=604
-  _globals['_DELETEIMAGESREQUEST']._serialized_end=659
-  _globals['_DELETEIMAGESRESPONSE']._serialized_start=661
-  _globals['_DELETEIMAGESRESPONSE']._serialized_end=714
-  _globals['_UPDATEIMAGESREQUEST']._serialized_start=716
-  _globals['_UPDATEIMAGESREQUEST']._serialized_end=794
-  _globals['_UPDATEIMAGESRESPONSE']._serialized_start=796
-  _globals['_UPDATEIMAGESRESPONSE']._serialized_end=849
-  _globals['_IMAGEPROCESSOR']._serialized_start=852
-  _globals['_IMAGEPROCESSOR']._serialized_end=1221
+  _globals['_UPLOADIMAGERESPONSE']._serialized_end=214
+  _globals['_GETIMAGESREQUEST']._serialized_start=216
+  _globals['_GETIMAGESREQUEST']._serialized_end=262
+  _globals['_IMAGE']._serialized_start=264
+  _globals['_IMAGE']._serialized_end=371
+  _globals['_GETIMAGESRESPONSE']._serialized_start=374
+  _globals['_GETIMAGESRESPONSE']._serialized_end=529
+  _globals['_GETIMAGEREQUEST']._serialized_start=531
+  _globals['_GETIMAGEREQUEST']._serialized_end=566
+  _globals['_GETIMAGERESPONSE']._serialized_start=568
+  _globals['_GETIMAGERESPONSE']._serialized_end=616
+  _globals['_DELETEIMAGESREQUEST']._serialized_start=618
+  _globals['_DELETEIMAGESREQUEST']._serialized_end=673
+  _globals['_DELETEIMAGESRESPONSE']._serialized_start=675
+  _globals['_DELETEIMAGESRESPONSE']._serialized_end=728
+  _globals['_UPDATEIMAGESREQUEST']._serialized_start=730
+  _globals['_UPDATEIMAGESREQUEST']._serialized_end=792
+  _globals['_UPDATEIMAGESRESPONSE']._serialized_start=794
+  _globals['_UPDATEIMAGESRESPONSE']._serialized_end=847
+  _globals['_IMAGEPROCESSOR']._serialized_start=850
+  _globals['_IMAGEPROCESSOR']._serialized_end=1219
 # @@protoc_insertion_point(module_scope)

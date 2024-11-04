@@ -32,6 +32,7 @@ class ImageProcessorRouter(BaseRouter):
     }
 
     response_models = {
+        "post_upload_image": ImagesSchemaResponse,
         "get_images": PaginatedImagesSchemaResponse,
         "get_image": ImagesSchemaResponse,
         "delete_images": ImagesSchemaResponse,
@@ -49,7 +50,7 @@ class ImageProcessorRouter(BaseRouter):
         response = await cls.controller.upload_file(
             file, context=GRPCLoaderContext(stream_unary_access_token=access_token)
         )
-        return JSONResponse(cls.proto_to_dict(instance=response))
+        return cls.proto_to_basemodel(instance=response, model=ImagesSchemaResponse)
 
     @classmethod
     async def get_images(
@@ -107,22 +108,20 @@ class ImageProcessorRouter(BaseRouter):
         return cls.proto_to_basemodel(instance=response, model=ImagesSchemaResponse)
 
     @classmethod
-    async def patch_update_images(
+    async def patch_update_image(
         cls,
         update_schema: UpdateImagesSchema,
-        all_: bool = Query(default=False),
-        images_ids: list[uuid.UUID] = Query(default=[]),
+        image_id: uuid.UUID,
         amqp_client: AMQPClient = Depends(AMQPClient().init),
         access_token: str = Security(api_key_header),
     ):
         asyncio.ensure_future(
             amqp_client.event_producer(
-                message=f"Event: Update images with params: all_ = {all_}, images_ids = {images_ids}"
+                message=f"Event: Update images with params: image_id = {image_id}"
             )
         )
-        response = await cls.controller.update_images(
-            all_=all_,
-            images_ids=images_ids,
+        response = await cls.controller.update_image(
+            image_id=image_id,
             update_schema=update_schema,
             context=GRPCLoaderContext(access_token=access_token),
         )
