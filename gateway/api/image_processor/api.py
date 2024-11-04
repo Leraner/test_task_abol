@@ -60,15 +60,25 @@ class ImageProcessorRouter(BaseRouter):
         amqp_client: AMQPClient = Depends(AMQPClient().init),
         access_token: str = Security(api_key_header),
     ):
+        key = f"images_page_{page}_size_{size}"
+
+        if data_from_redis := await cls.get_from_cache(key=key):
+            return data_from_redis
+
         asyncio.ensure_future(
             amqp_client.event_producer(message="Event: get all images")
         )
         response = await cls.controller.get_images(
             page=page, size=size, context=GRPCLoaderContext(access_token=access_token)
         )
-        return cls.proto_to_basemodel(
+
+        response_model = cls.proto_to_basemodel(
             instance=response, model=PaginatedImagesSchemaResponse
         )
+
+        await cls.set_cache(key=key, value=response_model)
+
+        return response_model
 
     @classmethod
     async def get_image(

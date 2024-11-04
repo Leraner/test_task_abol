@@ -14,6 +14,13 @@ git clone git@github.com:Leraner/test_task_abol.git
 docker-compose up --build
 ```
 
+### Применяем миграции
+```bash
+cd auth
+make migrate
+```
+
+
 ### Запуск микросервисов
 
 ```bash
