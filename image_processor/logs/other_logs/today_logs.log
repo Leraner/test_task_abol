@@ -1,0 +1,10 @@
+2024-11-04T14:30:47.852289+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T14:30:58.185350+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T14:31:24.968747+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T14:32:04.463867+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T14:32:04.518384+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T14:32:40.287175+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T14:32:40.367794+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T14:32:45.983249+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/utils/logger.py:prepare_logger: 157]: Next rotation scheduled for: 2024-11-04 17:59:59 UTC
+2024-11-04T14:32:46.034734+03:00 [INFO] [/Users/danilacuprin/Documents/Programming/test_task_abol/image_processor/server.py:run_server: 31]: Microservice started on address: 0.0.0.0:50050
+2024-11-04T14:33:10.252178+03:00 [INFO] [/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py:run: 58]: Event: get all images

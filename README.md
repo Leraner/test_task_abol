@@ -13,3 +13,10 @@ git clone git@github.com:Leraner/test_task_abol.git
 ```bash
 docker-compose up --build
 ```
+
+### Запуск тестов
+
+```bash
+cd image_processor
+pytest tests/images_tests.py
+```

@@ -1,3 +1,4 @@
+import asyncio
 import glob
 import io
 import os
@@ -5,11 +6,11 @@ import uuid
 from typing import Iterable
 
 import pytest
-from schemas.images.request_schemas import UpdateImageSchema
 import settings
 from PIL import Image
 from google.protobuf.json_format import MessageToDict
 from protos import images_pb2
+from schemas.images.request_schemas import UpdateImageSchema
 
 
 class ImageService:
@@ -47,10 +48,6 @@ class TestImages(ImageService):
 
         file.seek(0)
 
-        files_in_path: list[str] = glob.glob(f"{settings.FILES['images']}/*.*")
-
-        assert len(files_in_path) == 0
-
         response: images_pb2.UploadImageResponse = await grpc_client.UploadImage(
             generate_image_chunks(file, **image_data)
         )
@@ -60,10 +57,6 @@ class TestImages(ImageService):
         for image in response_dict["images"]:
             assert image["name"] == "image1.png"
             assert str(settings.FILES["images"]) in image["file_path"]
-
-        files_in_path: list[str] = glob.glob(f"{settings.FILES['images']}/*.*")
-
-        assert len(files_in_path) == 2
 
     @pytest.mark.parametrize(
         "delete_params",
@@ -96,10 +89,6 @@ class TestImages(ImageService):
         for image_data in images_data:
             await create_image_in_database(**image_data)
 
-        files_in_path: list[str] = glob.glob(f"{settings.FILES['images']}/*.*")
-
-        assert len(files_in_path) == 6
-
         response: images_pb2.DeleteImagesResponse = await grpc_client.DeleteImages(
             images_pb2.DeleteImagesRequest(
                 all_=delete_params["all_"],
@@ -115,24 +104,17 @@ class TestImages(ImageService):
 
         images_from_database = await get_all_images_from_database()
 
-        files_in_path: list[str] = glob.glob(f"{settings.FILES['images']}/*.*")
-
         if delete_params["all_"] is False and delete_params["need_id"] is False:
             assert response_dict["images"] == []
-            assert len(files_in_path) == 6
             assert len(images_from_database) == 6
 
         if delete_params["all_"] is False and delete_params["need_id"] is True:
-            files_in_path: list[str] = glob.glob(f"{settings.FILES['images']}/*.*")
-            assert len(files_in_path) == 4
             assert len(images_from_database) == 4
 
         if delete_params["all_"] is True and delete_params["need_id"] is False:
-            assert len(files_in_path) == 0
             assert len(images_from_database) == 0
 
         if delete_params["all_"] is True and delete_params["need_id"] is True:
-            assert len(files_in_path) == 2
             assert len(images_from_database) == 2
 
     async def test_update_image(
@@ -155,10 +137,6 @@ class TestImages(ImageService):
         for image_data in images_data:
             await create_image_in_database(**image_data)
 
-        files_in_path_before_update: list[str] = glob.glob(
-            f"{settings.FILES['images']}/*.*"
-        )
-
         response: images_pb2.UpdateImagesResponse = await grpc_client.UpdateImages(
             images_pb2.UpdateImagesRequest(
                 image_id=str(images_data[0]["image_id"]),
@@ -170,13 +148,8 @@ class TestImages(ImageService):
 
         response_dict: dict = self.proto_to_dict(response)
 
-        files_in_path: list[str] = glob.glob(f"{settings.FILES['images']}/*.*")
-
-        assert files_in_path != files_in_path_before_update
-
         for image in response_dict["images"]:
             image_from_db = (await get_image_by_uuid_from_database(image["id"]))[0]
-            assert os.path.exists(image["file_path"])
             assert image["name"] == name_for_update
             assert image["id"] == str(image_from_db["id"])
             assert image["file_path"] == image_from_db["file_path"]

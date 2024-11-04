@@ -20,6 +20,24 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    container_name: redis
+    image: redis:alpine
+    env_file:
+      - .env
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+
+    networks:
+      - shared_net
+
+    command: [ "redis-server", "--port ${REDIS_PORT}" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3-management-alpine
@@ -62,11 +80,14 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+      redis:
+        condition: service_healthy
 
     links:
       - auth
       - image_processor
       - rabbitmq
+      - redis
 
 
   image_processor:
@@ -95,6 +116,8 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+      redis:
+        condition: service_healthy
 
     links:
       - database
@@ -120,6 +143,8 @@ services:
 
     depends_on:
       database:
+        condition: service_healthy
+      redis:
         condition: service_healthy
 
     links:

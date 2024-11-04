@@ -1,10 +1,10 @@
 from enum import Enum
 from typing import Any
-from utils import Converter
+from utils import Converter, RedisCache
 from fastapi import APIRouter
 
 
-class BaseRouter(Converter):
+class BaseRouter(Converter, RedisCache):
     """Class registering routes"""
 
     prefix: str

@@ -34,7 +34,7 @@ async def asyncpg_pool():
     A connection pool allows you to create multiple connections at application startup
     and reuse them for executing requests.
     """
-    pool = await asyncpg.create_pool("".join(settings.DATABASE_URL.split("+asyncpg")))
+    pool = await asyncpg.create_pool("".join(settings.DATABASE_URL.split("+asyncpg")).replace("database", "localhost"))
     yield pool
     await pool.close()
 
@@ -53,8 +53,7 @@ async def access_token() -> str:
 @pytest.fixture(scope="function")
 def grpc_client(access_token: str):
     channel = grpc.aio.insecure_channel(
-        # {settings.HOST}
-        f"image_processor:{settings.PORT}",
+        f"{settings.HOST}:{settings.PORT}",
         interceptors=(
             KeyAuthClientInterceptor(access_token),
             KeyAuthClientInterceptorStreamUnary(access_token),
@@ -65,7 +64,7 @@ def grpc_client(access_token: str):
 
 @pytest.fixture(scope="session")
 async def async_session_test():
-    async_engine = create_async_engine(settings.DATABASE_URL, echo=False)
+    async_engine = create_async_engine(settings.DATABASE_URL.replace("database", "localhost"), echo=False)
     async_session = async_sessionmaker(
         async_engine, expire_on_commit=False, class_=AsyncSession
     )
