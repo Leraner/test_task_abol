@@ -14,6 +14,14 @@ git clone git@github.com:Leraner/test_task_abol.git
 docker-compose up --build
 ```
 
+### Установка зависимостей
+```bash
+python3 -m venv venv
+souce venv/bin/activate
+pip install -r requirements.txt
+```
+
+
 ### Применяем миграции
 ```bash
 cd auth
