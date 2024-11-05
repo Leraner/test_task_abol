@@ -13,6 +13,10 @@ REDIS_DB = int(os.getenv("REDIS_DB", 0))
 REDIS_EXPIRE_CACHE = 1000
 
 
+GATEWAY_PORT = int(os.getenv("GATEWAY_PORT", 8000))
+GATEWAY_HOST = os.getenv("GATEWAY_HOST", "0.0.0.0")
+
+
 microservices = {
     "image_processor": {
         "address": "image_processor:50050",
